@@ -1,0 +1,201 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.Farmer.Farmer_ConnectSP.DTOS;
+
+import java.math.BigDecimal;
+import java.util.Date;
+import org.springframework.web.multipart.MultipartFile;
+
+/**
+ *
+ * @author preml
+ */
+public class BiddingDTO {
+
+    private Integer bid;
+    private BigDecimal biddingPrice;
+    private Date datetime;
+    private Integer status;
+    private Integer customerId;
+    private Integer productId;
+    private String customername;
+    private String phoneno;
+    private String state;
+    private String city;
+    private String customerimage;
+    private String img1;
+    private String img2;
+    private String productName;
+    private String productType;
+    private String quantity;
+    private String quality;
+    private BigDecimal price;
+    private String description;
+    private String farmername;
+
+    public Integer getBid() {
+        return bid;
+    }
+
+    public void setBid(Integer bid) {
+        this.bid = bid;
+    }
+
+    public BigDecimal getBiddingPrice() {
+        return biddingPrice;
+    }
+
+    public void setBiddingPrice(BigDecimal biddingPrice) {
+        this.biddingPrice = biddingPrice;
+    }
+
+    public Date getDatetime() {
+        return datetime;
+    }
+
+    public void setDatetime(Date datetime) {
+        this.datetime = datetime;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Integer getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Integer customerId) {
+        this.customerId = customerId;
+    }
+
+    public Integer getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Integer productId) {
+        this.productId = productId;
+    }
+
+    public String getImg1() {
+        return img1;
+    }
+
+    public void setImg1(String img1) {
+        this.img1 = img1;
+    }
+
+    public String getImg2() {
+        return img2;
+    }
+
+    public void setImg2(String img2) {
+        this.img2 = img2;
+    }
+
+    public String getCustomername() {
+        return customername;
+    }
+
+    public void setCustomername(String customername) {
+        this.customername = customername;
+    }
+
+    public String getPhoneno() {
+        return phoneno;
+    }
+
+    public void setPhoneno(String phoneno) {
+        this.phoneno = phoneno;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCustomerimage() {
+        return customerimage;
+    }
+
+    public void setCustomerimage(String customerimage) {
+        this.customerimage = customerimage;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public String getProductType() {
+        return productType;
+    }
+
+    public void setProductType(String productType) {
+        this.productType = productType;
+    }
+
+    public String getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getQuality() {
+        return quality;
+    }
+
+    public void setQuality(String quality) {
+        this.quality = quality;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getFarmername() {
+        return farmername;
+    }
+
+    public void setFarmername(String farmername) {
+        this.farmername = farmername;
+    }
+
+
+    
+
+}
