@@ -36,17 +36,15 @@ public class FarmerController {
      * @param farmerdto
      * @return
      */
-    @PostMapping("/farmer-login")
-    public ResponseEntity<FarmerRegister> farmerlogin(@ModelAttribute FarmerDTO farmerdto) {
-        FarmerRegister mess = farmerservice.findfarmer(farmerdto.getUsername(), farmerdto.getPassword());
-
-        System.out.println(mess);
-        if (mess != null) {
-            System.out.println(mess.getUsername());
-            return ResponseEntity.ok(mess);
-        } else {
-            return ResponseEntity.status(500).body(null);
+    @PostMapping("/farmer-login/")
+    public ResponseEntity<FarmerDTO> farmerlogin(@ModelAttribute FarmerDTO farmerdto) {
+        FarmerDTO farmerobj = farmerservice.findfarmer(farmerdto.getUsername(), farmerdto.getPassword());
+        
+        if(farmerobj==null)
+        {
+            return ResponseEntity.notFound().build();
         }
+        return ResponseEntity.ok(farmerobj);
     }
 
     /**

@@ -38,9 +38,9 @@ public class Emailservice {
      * @param to
      * @param subject
      */
-    public SimpleMailMessage sendmailtofarmer(@ModelAttribute FarmerDTO farmerdto) {
+    public SimpleMailMessage sendmailtofarmer(Integer fid) {
 
-        Optional<FarmerRegister> farmerop = farmerrop.findById(farmerdto.getFid());
+        Optional<FarmerRegister> farmerop = farmerrop.findById(fid);
 
         if (farmerop.isEmpty()) {
             return null;
@@ -53,7 +53,7 @@ public class Emailservice {
         SimpleMailMessage message = new SimpleMailMessage();
 
         message.setTo(farmerobj.getEmail());
-        message.setSubject("");
+        message.setSubject("🎉 Your Farmer-Connect Account Has Been Approved!");
         message.setText("👋 Dear" + farmerobj.getUsername() + "\n"
                 + "\n"
                 + "🎉 We are pleased to inform you that your entry request for the Farmer-Connect website has been approved.\n"
@@ -79,9 +79,9 @@ public class Emailservice {
         return message;
     }
 
-    public SimpleMailMessage sendmailtocustomer(@ModelAttribute CustomerDTO customerdto) {
+    public SimpleMailMessage sendmailtocustomer(Integer cid) {
 
-        Optional<CustomerRegister> customerrop = customerrepo.findById(customerdto.getCid());
+        Optional<CustomerRegister> customerrop = customerrepo.findById(cid);
 
         if (customerrop.isEmpty()) {
             return null;
@@ -94,7 +94,7 @@ public class Emailservice {
         SimpleMailMessage message = new SimpleMailMessage();
 
         message.setTo(customerobj.getEmail());
-        message.setSubject("");
+        message.setSubject("🎉 Your Farmer-Connect Account Has Been Approved!");
         message.setText("👋 Dear" + customerobj.getUsername() + "\n"
                 + "\n"
                 + "🎉 We are pleased to inform you that your entry request for the Farmer-Connect website has been approved.\n"
@@ -120,30 +120,32 @@ public class Emailservice {
         return message;
     }
 
-    public SimpleMailMessage blockfarmer(FarmerDTO farmerdto) {
-        FarmerRegister farmerobj = farmerrop.findByemail(farmerdto.getEmail());
-
+    public SimpleMailMessage blockfarmer(Integer fid) {
+//        FarmerRegister farmerobj = farmerrop.findByemail(farmerdto.ge);
+        Optional<FarmerRegister> farmerop = farmerrop.findById(fid);
+        FarmerRegister farmerobj = farmerop.get();
         farmerobj.setStatus(0);
         farmerrop.save(farmerobj);
-        SimpleMailMessage message = blockemailfarmer(farmerdto);
+        SimpleMailMessage message = blockemailfarmer(farmerobj);
         return message;
     }
 
-    public SimpleMailMessage blockcustomer(CustomerDTO customerdto) {
-        CustomerRegister customerobj = customerrepo.findByemail(customerdto.getEmail());
+    public SimpleMailMessage blockcustomer(Integer cid) {
+        Optional<CustomerRegister> customerop = customerrepo.findById(cid);
+        CustomerRegister customerobj = customerop.get();
 
         customerobj.setStatus(0);
         customerrepo.save(customerobj);
-        SimpleMailMessage message = blockemailcustomer(customerdto);
+        SimpleMailMessage message = blockemailcustomer(customerobj);
         return message;
     }
 
-    public SimpleMailMessage blockemailfarmer(FarmerDTO farmerdto) {
+    public SimpleMailMessage blockemailfarmer(FarmerRegister farmerobj) {
         SimpleMailMessage message = new SimpleMailMessage();
 
-        message.setTo(farmerdto.getEmail());
+        message.setTo(farmerobj.getEmail());
         message.setSubject("Important Notice: Your Farmer Connect Account Has Been Temporarily Blocked");
-        message.setText("Dear" + farmerdto.getUsername() + "\n"
+        message.setText("Dear" + farmerobj.getUsername() + "\n"
                 + "\n"
                 + "We would like to inform you that your Farmer Connect account has been temporarily blocked due to a violation of our platform policies / suspicious activity / incomplete verification (please specify the appropriate reason).\n"
                 + "\n"
@@ -168,12 +170,12 @@ public class Emailservice {
         return message;
     }
 
-    public SimpleMailMessage blockemailcustomer(CustomerDTO customerdto) {
+    public SimpleMailMessage blockemailcustomer(CustomerRegister customerobj) {
         SimpleMailMessage message = new SimpleMailMessage();
 
-        message.setTo(customerdto.getEmail());
+        message.setTo(customerobj.getEmail());
         message.setSubject("Important Notice: Your Farmer Connect Account Has Been Temporarily Blocked");
-        message.setText("Dear" + customerdto.getUsername() + "\n"
+        message.setText("Dear" + customerobj.getUsername() + "\n"
                 + "\n"
                 + "We would like to inform you that your Farmer Connect account has been temporarily blocked due to a violation of our platform policies / suspicious activity / incomplete verification (please specify the appropriate reason).\n"
                 + "\n"

@@ -183,17 +183,18 @@ public class CustomerService {
     }
 
     public CustomerDTO customerlogin(String username, String password) {
-        CustomerRegister validobj = customerrepository.findByUsernameAndPassword(username, password);
+        CustomerRegister customerobj = customerrepository.findByUsernameAndPassword(username, password);
 
-        if (validobj != null) {
+        if (customerobj != null) {
 
-            CustomerDTO obj = new CustomerDTO();
-            obj.setCid(validobj.getCid());
-            obj.setUsername(validobj.getUsername());
-            obj.setPassword(validobj.getPassword());
-
-            return obj;
+            new RuntimeException("Customer Not found");
         }
-        return null;
+        CustomerDTO customerdto = new CustomerDTO();
+
+        customerdto.setPassword(customerobj.getPassword());
+        customerdto.setUsername(customerobj.getUsername());
+        customerdto.setCid(customerobj.getCid());
+
+        return customerdto;
     }
 }

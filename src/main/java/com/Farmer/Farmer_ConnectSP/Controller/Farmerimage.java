@@ -24,7 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
  */
 @Service
 public class Farmerimage {
-    
+
     @Autowired
     private FarmerRepository farmerrepository;
 
@@ -95,16 +95,16 @@ public class Farmerimage {
             farmerobj.setFarmerAdhar(imag1);
             farmerobj.setFarmerAdharback(imag2);
             FarmerRegister mess = farmerrepository.save(farmerobj);
-            
+
             return "inserted successfully";
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         return null;
-        
+
     }
-    
+
     public List<FarmerRegister> getallfarmer() {
         List<FarmerRegister> farmer = farmerrepository.findAll();
         farmer.forEach(farm -> {
@@ -117,31 +117,31 @@ public class Farmerimage {
         });
         return farmer;
     }
-    
+
     public FarmerRegister getfarmerbyid(Integer id) {
         Optional<FarmerRegister> farmerop = farmerrepository.findById(id);
-        
+
         if (farmerop.isEmpty()) {
             return null;
         }
-        
+
         FarmerRegister farmerobj = farmerop.get();
-        
+
         farmerobj.setFarmerAdhar(serverurl + "/Farmer-photo/" + farmerobj.getFarmerAdhar());
         farmerobj.setFarmerAdharback(serverurl + "/Farmer-photo/" + farmerobj.getFarmerAdharback());
         farmerobj.setFarmerImg(serverurl + "/Farmer-photo/" + farmerobj.getFarmerImg());
         return farmerobj;
     }
-    
+
     public FarmerRegister updatefamer(Integer id, FarmerDTO farmerdto) {
         Optional<FarmerRegister> farmerop = farmerrepository.findById(id);
-        
+
         if (farmerop.isEmpty()) {
             return null;
         }
-        
+
         FarmerRegister farmerobj = farmerop.get();
-        
+
         farmerobj.setAddress(farmerdto.getAddress());
         farmerobj.setCity(farmerdto.getCity());
         farmerobj.setDatetime(farmerdto.getDatetime());
@@ -150,19 +150,19 @@ public class Farmerimage {
         farmerobj.setStatus(farmerdto.getStatus());
         farmerobj.setState(farmerdto.getState());
         farmerobj.setUsername(farmerdto.getUsername());
-        
+
         try {
             if (farmerdto.getFarmerImg() != null) {
                 MultipartFile image = farmerdto.getFarmerImg();
                 String imgname = image.getOriginalFilename();
                 String imgexten = imgname.substring(imgname.indexOf("."));
-                
+
                 String proimgname = System.currentTimeMillis() + imgexten;
                 Path path = Paths.get(folderpath, proimgname);
                 Files.copy(farmerdto.getFarmerImg().getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
-                
+
                 farmerobj.setFarmerImg(proimgname);
-                
+
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -172,31 +172,31 @@ public class Farmerimage {
 //       farmerobj.setFarmerAdharback(serverurl+"/Farmer-photo/"+farmerdto.getFarmerAdharback());
         FarmerRegister save = farmerrepository.save(farmerobj);
         return save;
-        
+
     }
-    
+
     public String deletefarmer(Integer id) {
 //        boolean status=false;
 
         Optional<FarmerRegister> farmerop = farmerrepository.findById(id);
-        
+
         if (farmerop.isEmpty()) {
             return null;
         }
-        
+
         FarmerRegister farmerobj = farmerop.get();
-        
+
         if (farmerobj.getFarmerAdhar() != null) {
             File path = new File(serverurl + farmerobj.getFarmerAdhar());
-            
+
             if (path.exists()) {
                 path.delete();
             }
         }
-        
+
         if (farmerobj.getFarmerAdharback() != null) {
             File path = new File(serverurl + farmerobj.getFarmerAdharback());
-            
+
             if (path.exists()) {
                 path.delete();
             }
@@ -204,47 +204,52 @@ public class Farmerimage {
         farmerrepository.deleteById(id);
         return "Deleted successfuly";
     }
-    
+
     public String imagesave(MultipartFile file) {
         try {
             String image = file.getOriginalFilename();
             String imgextension = image.substring(image.lastIndexOf("."));
             String imagename = System.currentTimeMillis() + imgextension;
-            
+
             Path path = Paths.get(folderpath, imagename);
-            
+
             Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
-            
+
             return imagename;
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
-    
+
     public FarmerRegister unblockfarmer(Integer id, FarmerDTO farmerdto) {
-        
+
         Optional<FarmerRegister> farmerop = farmerrepository.findById(id);
-        
+
         if (farmerop.isEmpty()) {
             return null;
         }
         FarmerRegister farmerobj = farmerop.get();
-        
+
         farmerobj.setStatus(farmerdto.getStatus());
-        
+
         farmerrepository.save(farmerobj);
-        return farmerobj;        
+        return farmerobj;
     }
-    
-    public FarmerRegister findfarmer(String name, String password) {
-        FarmerRegister save = farmerrepository.findByUsernameAndPassword(name, password);
-        
-        if (save != null) {
-            save.setUsername(name);
-            save.setPassword(password);
-            return save;
+
+    public FarmerDTO findfarmer(String name, String password) {
+
+        FarmerRegister farmerobj = farmerrepository.findByUsernameAndPassword(name, password);
+
+        System.out.print(farmerobj.getUsername());
+        if (farmerobj == null) {
+            new RuntimeException("farmer not found ");
         }
-        return save;
+        FarmerDTO farmerdto = new FarmerDTO();
+        farmerdto.setUsername(farmerobj.getUsername());
+        farmerdto.setPassword(farmerobj.getPassword());
+        farmerdto.setFid(farmerobj.getFid());
+
+        return farmerdto;
     }
 }

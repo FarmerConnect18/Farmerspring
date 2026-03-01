@@ -11,6 +11,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
  *
  * @author preml
  */
-public interface AdminInterface extends JpaRepository<Admin,Integer> {
+public interface AdminRepository extends JpaRepository<Admin,Integer> {
+
+    public Admin findByUsernameAndPassword(String Username, String Password);
+
     
 }

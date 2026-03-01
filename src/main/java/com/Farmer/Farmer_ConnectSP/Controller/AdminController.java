@@ -6,7 +6,6 @@ package com.Farmer.Farmer_ConnectSP.Controller;
 
 import com.Farmer.Farmer_ConnectSP.DTOS.CustomerDTO;
 import com.Farmer.Farmer_ConnectSP.Entities.Admin;
-import com.Farmer.Farmer_ConnectSP.Repository.AdminInterface;
 import com.Farmer.Farmer_ConnectSP.Services.Emailservice;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -20,6 +19,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import com.Farmer.Farmer_ConnectSP.Repository.AdminRepository;
+import com.Farmer.Farmer_ConnectSP.Services.AdminService;
+import org.springframework.web.bind.annotation.PathVariable;
 
 /**
  *
@@ -31,7 +33,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class AdminController {
 
     @Autowired
-    private AdminInterface adminrepo;
+    private AdminRepository adminrepo;
+
+    @Autowired
+    private AdminService adminserice;
 
     @Autowired
     private Emailservice emailservice;
@@ -41,22 +46,29 @@ public class AdminController {
      * @param obj
      * @return
      */
-    @PostMapping("/login-admin")
-    public ResponseEntity<Admin> smaple(@RequestBody Admin obj) {
-        obj.setCreatedAt(LocalDateTime.now());
-        adminrepo.save(obj);
-        return ResponseEntity.ok().body(obj);
+//    @PostMapping("/login-admin")
+//    public ResponseEntity<Admin> smaple(@RequestBody Admin obj) {
+//        adminrepo.save(obj);
+//        return ResponseEntity.ok().body(obj);
+//    }
+    @PostMapping("/admin-login/")
+    public ResponseEntity<Admin> adminlgon(@RequestBody Admin obj) {
+        Admin adminobj = adminserice.getAdmin(obj.getPassword(), obj.getUsername());
+        if (adminobj == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(adminobj);
     }
 
-    @GetMapping("/get-admin")
+    @GetMapping("/get-admin/")
     public ResponseEntity<List<Admin>> userdata() {
         List<Admin> list = adminrepo.findAll();
         return ResponseEntity.ok(list);
     }
 
-    @PostMapping("/email-Sending-farmer")
-    public ResponseEntity<SimpleMailMessage> ApprovetoFarmer(@ModelAttribute FarmerDTO farmerdto) {
-        SimpleMailMessage mess = emailservice.sendmailtofarmer(farmerdto);
+    @GetMapping("/email-Sending-farmer/{id}")
+    public ResponseEntity<SimpleMailMessage> ApprovetoFarmer(@PathVariable Integer id) {
+        SimpleMailMessage mess = emailservice.sendmailtofarmer(id);
 
         if (mess == null) {
             return ResponseEntity.noContent().build();
@@ -64,9 +76,9 @@ public class AdminController {
         return ResponseEntity.ok(mess);
     }
 
-    @PostMapping("/email-Sending-customer")
-    public ResponseEntity<SimpleMailMessage> ApprovetoCustomer(@ModelAttribute CustomerDTO customerdto) {
-        SimpleMailMessage mess = emailservice.sendmailtocustomer(customerdto);
+    @GetMapping("/email-Sending-customer/{id}")
+    public ResponseEntity<SimpleMailMessage> ApprovetoCustomer(@PathVariable Integer id) {
+        SimpleMailMessage mess = emailservice.sendmailtocustomer(id);
 
         if (mess == null) {
             return ResponseEntity.noContent().build();
@@ -74,10 +86,9 @@ public class AdminController {
         return ResponseEntity.ok(mess);
     }
 
-    
-    @PostMapping("/block-farmer/")
-    public ResponseEntity<SimpleMailMessage> blocktofarmer(@ModelAttribute FarmerDTO farmerdto) {
-        SimpleMailMessage mess = emailservice.blockfarmer(farmerdto);
+    @GetMapping("/block-farmer/{id}")
+    public ResponseEntity<SimpleMailMessage> blocktofarmer(@PathVariable Integer id) {
+        SimpleMailMessage mess = emailservice.blockfarmer(id);
 
         if (mess == null) {
             return ResponseEntity.noContent().build();
@@ -87,9 +98,9 @@ public class AdminController {
 
     }
 
-    @PostMapping("/block-customer/")
-    public ResponseEntity<SimpleMailMessage> blocktocustomer(@ModelAttribute CustomerDTO customerdto) {
-        SimpleMailMessage mess = emailservice.blockcustomer(customerdto);
+    @GetMapping("/block-customer/{id}")
+    public ResponseEntity<SimpleMailMessage> blocktocustomer(@PathVariable Integer id) {
+        SimpleMailMessage mess = emailservice.blockcustomer(id);
 
         if (mess == null) {
             return ResponseEntity.noContent().build();

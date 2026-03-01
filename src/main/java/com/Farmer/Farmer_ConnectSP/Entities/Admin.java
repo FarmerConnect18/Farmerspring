@@ -15,6 +15,7 @@ import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import org.hibernate.annotations.CreationTimestamp;
 
 /**
  *
@@ -40,6 +41,7 @@ public class Admin implements Serializable {
     @Column(name = "password")
     private String password;
     @Column(name="datetime")
+    @CreationTimestamp
     private LocalDateTime datetime;
 
     public Admin() {
@@ -73,6 +75,15 @@ public class Admin implements Serializable {
         this.password = password;
     }
 
+    public LocalDateTime getDatetime() {
+        return datetime;
+    }
+
+    public void setDatetime(LocalDateTime datetime) {
+        this.datetime = datetime;
+    }
+
+    
     @Override
     public int hashCode() {
         int hash = 0;

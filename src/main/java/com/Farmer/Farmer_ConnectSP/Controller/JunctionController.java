@@ -57,6 +57,5 @@ public class JunctionController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(junobj);
-
     }
 }

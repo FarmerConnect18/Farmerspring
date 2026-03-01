@@ -42,15 +42,23 @@ public class JunctionService {
         if (!folder.exists()) {
             folder.mkdirs();
         }
+        Optional<FarmerRegister> farmerop = farmerrepo.findById(junctiondto.getFarmerId());
+
+        if (farmerop.isEmpty()) {
+            return null;
+        }
+        FarmerRegister farmerobj = farmerop.get();
 
         Junction junobj = new Junction();
+
+        junobj.setFarmerId(farmerobj);
 
         junobj.setAddress(junctiondto.getAddress());
         junobj.setCost(junctiondto.getCost());
         junobj.setDescription(junctiondto.getDescription());
         junobj.setJuncname(junctiondto.getJuncname());
-        junobj.setPhoneno(junctiondto.getPhoneno());
-        junobj.setStatus(0);
+        junobj.setPhoneno(farmerobj.getPhoneno());
+        junobj.setStatus(1);
 
         String imagename;
         imagename = imagesave(junctiondto.getImg1());
@@ -59,15 +67,6 @@ public class JunctionService {
         imagename = imagesave(junctiondto.getImg2());
         junobj.setImg2(imagename);
 
-        Optional<FarmerRegister> farmerop = farmerrepo.findById(junctiondto.getFarmerId());
-
-        if (farmerop.isEmpty()) {
-            return null;
-        }
-
-        FarmerRegister farmerobj = farmerop.get();
-
-        junobj.setFarmerId(farmerobj);
         junctionrepo.save(junobj);
 
         return junobj;

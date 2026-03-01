@@ -47,6 +47,7 @@ public class CustomerController {
         CustomerDTO customerobj = customerservice.customerlogin(customerdto.getUsername(), customerdto.getPassword());
 
         System.out.println(customerobj.getCid());
+        System.out.print(customerobj.getUsername());
 
         if (customerobj != null) {
             return ResponseEntity.ok(customerobj);
