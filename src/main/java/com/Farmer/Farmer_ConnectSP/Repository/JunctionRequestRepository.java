@@ -4,19 +4,17 @@
  */
 package com.Farmer.Farmer_ConnectSP.Repository;
 
-import com.Farmer.Farmer_ConnectSP.Entities.FarmerRegister;
+import com.Farmer.Farmer_ConnectSP.Entities.JunctionRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author preml
  */
-public interface FarmerRepository extends JpaRepository<FarmerRegister,Integer> {
+public interface JunctionRequestRepository extends JpaRepository<JunctionRequest,Integer>{
 
-    public FarmerRegister findByUsernameAndPassword(String name, String password);
+    public JunctionRequest findByjunctionId_jid(Integer jid);
 
-    public FarmerRegister findByemail(String email);
-
-    public FarmerRegister findByUsername(String username);
+    public void deleteByJunctionId_Jid(Integer jid);
     
 }

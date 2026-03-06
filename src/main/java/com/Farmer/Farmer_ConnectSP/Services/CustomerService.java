@@ -18,6 +18,7 @@ import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -30,6 +31,8 @@ public class CustomerService {
 
     @Autowired
     private CustomerRepository customerrepository;
+    @Autowired
+    private PasswordEncoder securityobj;
 
     private final String folderpath = "E:/Project/projectimages/Customer-images/";
     private final String serverurl = "http://localhost:8080";
@@ -46,7 +49,7 @@ public class CustomerService {
         customerobj.setCity(customerdto.getCity());
         customerobj.setDatetime(customerdto.getDatetime());
         customerobj.setEmail(customerdto.getEmail());
-        customerobj.setPassword(customerdto.getPassword());
+        customerobj.setPassword(securityobj.encode(customerdto.getPassword()));
         customerobj.setPhoneno(customerdto.getPhoneno());
         customerobj.setState(customerdto.getState());
         customerobj.setStatus(0);
@@ -182,18 +185,26 @@ public class CustomerService {
         return "User deleted successfully";
     }
 
-    public CustomerDTO customerlogin(String username, String password) {
-        CustomerRegister customerobj = customerrepository.findByUsernameAndPassword(username, password);
+    public CustomerDTO customerlogin(String username, String rawpassword) {
 
-        if (customerobj != null) {
+//        CustomerRegister customerobj = customerrepository.findByUsernameAndPassword(username, password);
+        CustomerRegister customerobj = customerrepository.findByUsername(username);
 
-            new RuntimeException("Customer Not found");
+        if (customerobj == null) {
+            return null;
         }
+
+        if (!securityobj.matches(rawpassword, customerobj.getPassword())) {
+//            new RuntimeException("Customer Password not matched.......");
+            return null;
+
+        }
+
         CustomerDTO customerdto = new CustomerDTO();
 
-        customerdto.setPassword(customerobj.getPassword());
         customerdto.setUsername(customerobj.getUsername());
         customerdto.setCid(customerobj.getCid());
+        customerdto.setStatus(customerobj.getStatus());
 
         return customerdto;
     }

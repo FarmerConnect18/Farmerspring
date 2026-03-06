@@ -14,6 +14,7 @@ import com.Farmer.Farmer_ConnectSP.Repository.BiddingRepository;
 import com.Farmer.Farmer_ConnectSP.Repository.CustomerRepository;
 import com.Farmer.Farmer_ConnectSP.Repository.FarmerRepository;
 import com.Farmer.Farmer_ConnectSP.Repository.ProductRepository;
+import jakarta.transaction.Transactional;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -248,6 +249,7 @@ public class BiddingService {
 
     }
 
+    @Transactional
     public SimpleMailMessage bidEndEmail(Integer id) {
         Optional<Bidding> bidop = biddingrepo.findById(id);
         Bidding bidobj = bidop.get();
@@ -263,7 +265,9 @@ public class BiddingService {
 
         bidobj.setStatus(0);
         productobj.setStatus(0);
-
+        
+        
+        biddingrepo.deleteByProductId_PidAndStatus(productobj.getPid(),1);
         biddingrepo.save(bidobj);
         productrepo.save(productobj);
 

@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.PathVariable;
  */
 @RestController
 @Controller
-@CrossOrigin("*")
+//@CrossOrigin("*")
 public class AdminController {
 
     @Autowired

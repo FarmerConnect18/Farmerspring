@@ -23,6 +23,8 @@ public interface BiddingRepository extends JpaRepository<Bidding,Integer>{
 
     public List<Bidding> findByCustomerId_CidAndStatus(Integer cid, int i);
 
+    public void deleteByProductId_PidAndStatus(Integer pid, Integer status);
+
 
 
     /**

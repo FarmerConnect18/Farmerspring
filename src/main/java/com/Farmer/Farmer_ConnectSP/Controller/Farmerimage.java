@@ -4,6 +4,7 @@
  */
 package com.Farmer.Farmer_ConnectSP.Controller;
 
+import com.Farmer.Farmer_ConnectSP.Configurefolder.SecurityConfig;
 import com.Farmer.Farmer_ConnectSP.Entities.FarmerRegister;
 import com.Farmer.Farmer_ConnectSP.Repository.FarmerRepository;
 import java.io.File;
@@ -15,6 +16,7 @@ import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -27,6 +29,9 @@ public class Farmerimage {
 
     @Autowired
     private FarmerRepository farmerrepository;
+
+    @Autowired
+    private PasswordEncoder securityobj;
 
 //    @Value("${project.image}")
 //    private  String folderpath="E:/Project/Farmer-ConnectSP/src/main/resources/static/Farmer-photo";
@@ -80,13 +85,12 @@ public class Farmerimage {
             farmerobj.setCity(farmerdto.getCity());
             farmerobj.setEmail(farmerdto.getEmail());
 //            farmerobj.setFarmerAdhar(filename);
-            farmerobj.setPassword(farmerdto.getPassword());
+            farmerobj.setPassword(securityobj.encode(farmerdto.getPassword()));
             farmerobj.setPhoneno(farmerdto.getPhoneno());
             farmerobj.setState(farmerdto.getState());
             farmerobj.setUsername(farmerdto.getUsername());
-            farmerobj.setStatus(farmerdto.getStatus());
+            farmerobj.setStatus(0);
             farmerobj.setDatetime(farmerdto.getDatetime());
-            farmerobj.setRole(farmerdto.getRole());
 //            farmerobj.setFarmerImg(filename);
             String imag1;
             String imag2;
@@ -237,18 +241,22 @@ public class Farmerimage {
         return farmerobj;
     }
 
-    public FarmerDTO findfarmer(String name, String password) {
+    public FarmerDTO findfarmer(String username, String rawpassword) {
 
-        FarmerRegister farmerobj = farmerrepository.findByUsernameAndPassword(name, password);
+        FarmerRegister farmerobj = farmerrepository.findByUsername(username);
 
-        System.out.print(farmerobj.getUsername());
         if (farmerobj == null) {
-            new RuntimeException("farmer not found ");
+            return null;
         }
+
+        if (!securityobj.matches(rawpassword, farmerobj.getPassword())) {
+            return null;
+        }
+
         FarmerDTO farmerdto = new FarmerDTO();
         farmerdto.setUsername(farmerobj.getUsername());
-        farmerdto.setPassword(farmerobj.getPassword());
         farmerdto.setFid(farmerobj.getFid());
+        farmerdto.setStatus(farmerobj.getStatus());
 
         return farmerdto;
     }

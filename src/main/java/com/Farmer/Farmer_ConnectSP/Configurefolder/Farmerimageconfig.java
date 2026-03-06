@@ -32,17 +32,17 @@ public class Farmerimageconfig implements WebMvcConfigurer {
                 .addResourceLocations("file:E:/Project/projectimages/Junction-images/");
     }
 
-//    @Override
-//    public void addCorsMappings(CorsRegistry registry) {
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
 
-////        WebMvcConfigurer.super.addCorsMappings(registry); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
-//
-//        registry.addMapping("/**")
-//                .allowedOrigins("http://localhost:4200/")
-//                .allowedMethods("POST", "GET", "PUT", "DELETE")
-//                .allowedHeaders("*")
-//                .allowCredentials(true);
-//
-//    }
+        WebMvcConfigurer.super.addCorsMappings(registry); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+
+        registry.addMapping("/**")
+                .allowedOrigins("https://farmerconnectprl.netlify.app/")
+                .allowedMethods("*")
+                .allowedHeaders("*")
+                .allowCredentials(true);
+
+    }
 
 }

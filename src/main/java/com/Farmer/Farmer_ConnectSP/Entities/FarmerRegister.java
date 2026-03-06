@@ -21,6 +21,7 @@ import jakarta.persistence.TemporalType;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import org.hibernate.annotations.CreationTimestamp;
 
 /**
  *
@@ -71,7 +72,7 @@ public class FarmerRegister implements Serializable {
     @Column(name = "farmer_adharback")
     private String farmerAdharback;
     @Column(name = "datetime")
-    @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
     private Date datetime;
     @Column(name = "status")
     private Integer status;

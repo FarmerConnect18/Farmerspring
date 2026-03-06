@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author preml
  */
 @RestController
-@CrossOrigin("*")
+//@CrossOrigin("*")
 @Controller
 public class FarmerController {
 
@@ -39,9 +39,8 @@ public class FarmerController {
     @PostMapping("/farmer-login/")
     public ResponseEntity<FarmerDTO> farmerlogin(@ModelAttribute FarmerDTO farmerdto) {
         FarmerDTO farmerobj = farmerservice.findfarmer(farmerdto.getUsername(), farmerdto.getPassword());
-        
-        if(farmerobj==null)
-        {
+
+        if (farmerobj == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(farmerobj);
@@ -68,14 +67,14 @@ public class FarmerController {
      *
      * @return
      */
-    @GetMapping("/farmer-list")
+    @GetMapping("/farmer-list/")
     public ResponseEntity<List<FarmerRegister>> farmerlist() {
         List<FarmerRegister> list = farmerservice.getallfarmer();
 
-        if (list != null) {
-            return ResponseEntity.ok(list);
+        if (list == null) {
+            return ResponseEntity.noContent().build();
         }
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(list);
     }
 
     /**

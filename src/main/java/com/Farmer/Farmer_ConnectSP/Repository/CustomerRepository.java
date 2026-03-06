@@ -24,5 +24,7 @@ public interface CustomerRepository extends JpaRepository<CustomerRegister,Integ
     public CustomerRegister findByUsernameAndPassword(String username, String password);
 
     public CustomerRegister findByemail(String email);
+
+    public CustomerRegister findByUsername(String username);
     
 }

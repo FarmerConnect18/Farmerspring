@@ -19,6 +19,7 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import java.io.Serializable;
 import java.util.Date;
+import org.hibernate.annotations.CreationTimestamp;
 
 /**
  *
@@ -41,12 +42,17 @@ public class JunctionRequest implements Serializable {
     private Integer rid;
     @Column(name = "days")
     private Integer days;
+    @Column(name = "status")
+    private Integer status;
     @Column(name = "datetime")
-    @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
     private Date datetime;
     @JoinColumn(name = "customer_id", referencedColumnName = "cid")
     @ManyToOne
     private CustomerRegister customerId;
+    @JoinColumn(name = "farmer_id", referencedColumnName = "fid")
+    @ManyToOne
+    private FarmerRegister farmerId;
     @JoinColumn(name = "junction_id", referencedColumnName = "jid")
     @ManyToOne
     private Junction junctionId;
@@ -98,6 +104,22 @@ public class JunctionRequest implements Serializable {
         this.junctionId = junctionId;
     }
 
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public FarmerRegister getFarmerId() {
+        return farmerId;
+    }
+
+    public void setFarmerId(FarmerRegister farmerId) {
+        this.farmerId = farmerId;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -122,5 +144,5 @@ public class JunctionRequest implements Serializable {
     public String toString() {
         return "com.Farmer.Farmer_ConnectSP.Entities.JunctionRequest[ rid=" + rid + " ]";
     }
-    
+
 }

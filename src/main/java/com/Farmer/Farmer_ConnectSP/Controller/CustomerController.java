@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author preml
  */
 @RestController
-@CrossOrigin()
+//@CrossOrigin()
 public class CustomerController {
 
     @Autowired
@@ -49,10 +49,10 @@ public class CustomerController {
         System.out.println(customerobj.getCid());
         System.out.print(customerobj.getUsername());
 
-        if (customerobj != null) {
-            return ResponseEntity.ok(customerobj);
+        if (customerobj == null) {
+            return ResponseEntity.notFound().build();
         }
-        return null;
+        return ResponseEntity.ok(customerobj) ;
     }
 
     @GetMapping("/get-customer")

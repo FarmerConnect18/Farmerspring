@@ -22,6 +22,7 @@ import jakarta.persistence.TemporalType;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import org.hibernate.annotations.CreationTimestamp;
 
 /**
  *
@@ -76,7 +77,7 @@ public class CustomerRegister implements Serializable {
     @Column(name = "customerAdharback")
     private String customerAdharback;
     @Column(name = "datetime")
-    @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
     private Date datetime;
     @Column(name = "status")
     private Integer status;

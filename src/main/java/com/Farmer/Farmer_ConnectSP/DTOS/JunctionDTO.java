@@ -25,6 +25,11 @@ public class JunctionDTO {
     private Date datetime;
     private Integer status;
     private Integer farmerId;
+    private String image;
+    private String farmername;
+    private String city;
+    private String state;
+    private String farmerimage;
 
     public Integer getJid() {
         return jid;
@@ -112,6 +117,46 @@ public class JunctionDTO {
 
     public void setFarmerId(Integer farmerId) {
         this.farmerId = farmerId;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getFarmername() {
+        return farmername;
+    }
+
+    public void setFarmername(String farmername) {
+        this.farmername = farmername;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getFarmerimage() {
+        return farmerimage;
+    }
+
+    public void setFarmerimage(String farmerimage) {
+        this.farmerimage = farmerimage;
     }
 
 }

@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author preml
  */
 @RestController
-@CrossOrigin("*")
+//@CrossOrigin("*")
 public class BiddingController {
     
     @Autowired
