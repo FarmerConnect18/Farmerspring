@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence           http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+  <persistence-unit name="com.Farmer_Farmer-ConnectSP_jar_0.0.1-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>com.Farmer.Farmer_ConnectSP.Entities.FarmerRegister</class>
+    <class>com.Farmer.Farmer_ConnectSP.Entities.CustomerRegister</class>
+    <class>com.Farmer.Farmer_ConnectSP.Entities.Admin</class>
+    <class>com.Farmer.Farmer_ConnectSP.Entities.Product</class>
+    <class>com.Farmer.Farmer_ConnectSP.Entities.ProductImg</class>
+    <class>com.Farmer.Farmer_ConnectSP.Entities.JunctionRequest</class>
+    <class>com.Farmer.Farmer_ConnectSP.Entities.Bidding</class>
+    <class>com.Farmer.Farmer_ConnectSP.Entities.JunctionImg</class>
+    <class>com.Farmer.Farmer_ConnectSP.Entities.Junction</class>
+    <class>com.Farmer.Farmer_ConnectSP.Entities.Contact</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mariadb://localhost:3306/Farmer_connect"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.driver" value="org.mariadb.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="root"/>
+    </properties>
+  </persistence-unit>
+</persistence>
