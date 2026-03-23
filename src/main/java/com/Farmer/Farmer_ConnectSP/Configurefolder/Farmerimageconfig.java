@@ -10,7 +10,6 @@ import java.util.Map;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
@@ -20,21 +19,21 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class Farmerimageconfig implements WebMvcConfigurer {
 
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//        WebMvcConfigurer.super.addResourceHandlers(registry); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
-        registry.addResourceHandler("/Farmer-photo/**")
-                .addResourceLocations("file:E:/Project/projectimages/Farmer-photo/");
-
-        registry.addResourceHandler("/Customer-images/**")
-                .addResourceLocations("file:E:/Project/projectimages/Customer-images/");
-
-        registry.addResourceHandler("/Product-images/**")
-                .addResourceLocations("file:E:/Project/projectimages/Product-images/");
-
-        registry.addResourceHandler("/Junction-images/**")
-                .addResourceLocations("file:E:/Project/projectimages/Junction-images/");
-    }
+//    @Override
+//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+////        WebMvcConfigurer.super.addResourceHandlers(registry); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+//        registry.addResourceHandler("/Farmer-photo/**")
+//                .addResourceLocations("file:E:/Project/projectimages/Farmer-photo/");
+//
+//        registry.addResourceHandler("/Customer-images/**")
+//                .addResourceLocations("file:E:/Project/projectimages/Customer-images/");
+//
+//        registry.addResourceHandler("/Product-images/**")
+//                .addResourceLocations("file:E:/Project/projectimages/Product-images/");
+//
+//        registry.addResourceHandler("/Junction-images/**")
+//                .addResourceLocations("file:E:/Project/projectimages/Junction-images/");
+//    }
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
@@ -42,9 +41,9 @@ public class Farmerimageconfig implements WebMvcConfigurer {
         WebMvcConfigurer.super.addCorsMappings(registry); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
 
         registry.addMapping("/**")
-                //                .allowedOrigins("https://farmerconnectprl.netlify.app/")
+                                .allowedOrigins("https://farmerconnectprl.netlify.app/")
 
-                .allowedOrigins("http://localhost:4200/")
+//                .allowedOrigins("http://localhost:4200/")
                 .allowedMethods("*")
                 .allowedHeaders("*")
                 .allowCredentials(true);
