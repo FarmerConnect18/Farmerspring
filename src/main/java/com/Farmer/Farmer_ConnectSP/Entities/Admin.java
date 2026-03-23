@@ -40,7 +40,9 @@ public class Admin implements Serializable {
     private String username;
     @Column(name = "password")
     private String password;
-    @Column(name="datetime")
+    @Column(name = "email")
+    private String email;
+    @Column(name = "datetime")
     @CreationTimestamp
     private LocalDateTime datetime;
 
@@ -83,7 +85,14 @@ public class Admin implements Serializable {
         this.datetime = datetime;
     }
 
-    
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -112,5 +121,5 @@ public class Admin implements Serializable {
     public void setCreatedAt(LocalDateTime now) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
 }

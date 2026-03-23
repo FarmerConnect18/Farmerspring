@@ -16,7 +16,6 @@ public class FarmerDTO {
 
 //    public FarmerDTO(String address1, String city1, String email1, String farmerAdhar1, String password1, String state1, Integer status1, Integer fid1, String username1, String profileimg,String role) {
 //    }
-
     private Integer fid;
     private String username;
     private String email;
@@ -32,6 +31,9 @@ public class FarmerDTO {
     private MultipartFile farmerImg;
     private MultipartFile farmerAdhar;
     private MultipartFile farmerAdharback;
+    private String adharfrontimage;
+    private String adharbackimage;
+    private String farmerimage;
 
     public MultipartFile getFarmerAdharback() {
         return farmerAdharback;
@@ -149,5 +151,28 @@ public class FarmerDTO {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    public String getAdharfrontimage() {
+        return adharfrontimage;
+    }
+
+    public void setAdharfrontimage(String adharfrontimage) {
+        this.adharfrontimage = adharfrontimage;
+    }
+
+    public String getAdharbackimage() {
+        return adharbackimage;
+    }
+
+    public void setAdharbackimage(String adharbackimage) {
+        this.adharbackimage = adharbackimage;
+    }
+
+    public String getFarmerimage() {
+        return farmerimage;
+    }
+
+    public void setFarmerimage(String farmerimage) {
+        this.farmerimage = farmerimage;
+    }
 
 }

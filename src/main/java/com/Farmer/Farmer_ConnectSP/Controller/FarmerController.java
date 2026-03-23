@@ -68,8 +68,8 @@ public class FarmerController {
      * @return
      */
     @GetMapping("/farmer-list/")
-    public ResponseEntity<List<FarmerRegister>> farmerlist() {
-        List<FarmerRegister> list = farmerservice.getallfarmer();
+    public ResponseEntity<List<FarmerDTO>> farmerlist() {
+        List<FarmerDTO> list = farmerservice.getallfarmer();
 
         if (list == null) {
             return ResponseEntity.noContent().build();
@@ -83,8 +83,8 @@ public class FarmerController {
      * @return
      */
     @GetMapping("/farmer-getbyid/{id}")
-    public ResponseEntity<FarmerRegister> farmegetbyid(@PathVariable Integer id) {
-        FarmerRegister obj = farmerservice.getfarmerbyid(id);
+    public ResponseEntity<FarmerDTO> farmegetbyid(@PathVariable Integer id) {
+        FarmerDTO obj = farmerservice.getfarmerbyid(id);
 
         if (obj != null) {
             return ResponseEntity.ok(obj);
@@ -126,7 +126,7 @@ public class FarmerController {
      * @param id
      * @return
      */
-    @DeleteMapping("farmer/{id}")
+    @DeleteMapping("/farmer/{id}")
     public ResponseEntity<String> deleteFarmer(@PathVariable Integer id) {
 
         String mess = farmerservice.deletefarmer(id);

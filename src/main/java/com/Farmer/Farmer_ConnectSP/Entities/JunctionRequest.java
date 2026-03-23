@@ -4,6 +4,7 @@
  */
 package com.Farmer.Farmer_ConnectSP.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -55,6 +56,7 @@ public class JunctionRequest implements Serializable {
     private FarmerRegister farmerId;
     @JoinColumn(name = "junction_id", referencedColumnName = "jid")
     @ManyToOne
+    @JsonIgnore
     private Junction junctionId;
 
     public JunctionRequest() {

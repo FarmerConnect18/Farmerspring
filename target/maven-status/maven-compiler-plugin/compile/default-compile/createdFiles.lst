@@ -38,6 +38,7 @@ com\Farmer\Farmer_ConnectSP\Controller\Farmerimage.class
 com\Farmer\Farmer_ConnectSP\Controller\BiddingController.class
 com\Farmer\Farmer_ConnectSP\Controller\Productcontroller.class
 com\Farmer\Farmer_ConnectSP\Services\JunctionService.class
+com\Farmer\Farmer_ConnectSP\Services\CloudinaryService.class
 com\Farmer\Farmer_ConnectSP\Entities\JunctionRequest.class
 com\Farmer\Farmer_ConnectSP\DTOS\JunctionDTO.class
 com\Farmer\Farmer_ConnectSP\DTOS\CustomerDTO.class

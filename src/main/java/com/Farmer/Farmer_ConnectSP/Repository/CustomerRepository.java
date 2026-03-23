@@ -5,8 +5,6 @@
 package com.Farmer.Farmer_ConnectSP.Repository;
 
 import com.Farmer.Farmer_ConnectSP.Entities.CustomerRegister;
-import java.util.List;
-import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -25,6 +23,8 @@ public interface CustomerRepository extends JpaRepository<CustomerRegister,Integ
 
     public CustomerRegister findByemail(String email);
 
-    public CustomerRegister findByUsername(String username);
+//    public CustomerRegister findByUsername(String username);
+
+    public CustomerRegister findByUsernameIgnoreCase(String username);
     
 }

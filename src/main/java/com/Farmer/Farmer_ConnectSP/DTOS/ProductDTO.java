@@ -23,7 +23,6 @@ public class ProductDTO {
     private String quality;
     private BigDecimal price;
     private String description;
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private Date datetime;
     private Integer status;
 

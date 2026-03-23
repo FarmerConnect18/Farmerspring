@@ -17,6 +17,8 @@ public interface FarmerRepository extends JpaRepository<FarmerRegister,Integer> 
 
     public FarmerRegister findByemail(String email);
 
-    public FarmerRegister findByUsername(String username);
+//    public FarmerRegister findByUsername(String username);
+
+    public FarmerRegister findByUsernameIgnoreCase(String username);
     
 }

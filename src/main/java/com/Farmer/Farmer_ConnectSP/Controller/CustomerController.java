@@ -6,12 +6,10 @@ package com.Farmer.Farmer_ConnectSP.Controller;
 
 import com.Farmer.Farmer_ConnectSP.DTOS.CustomerDTO;
 import com.Farmer.Farmer_ConnectSP.Entities.CustomerRegister;
-import com.Farmer.Farmer_ConnectSP.Entities.FarmerRegister;
 import com.Farmer.Farmer_ConnectSP.Services.CustomerService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -52,7 +50,7 @@ public class CustomerController {
         if (customerobj == null) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(customerobj) ;
+        return ResponseEntity.ok(customerobj);
     }
 
     @GetMapping("/get-customer")
@@ -85,9 +83,9 @@ public class CustomerController {
      * @return
      */
     @PutMapping("/update-customer/{id}")
-    public ResponseEntity<String> updatecutomer(@PathVariable Integer id, @ModelAttribute CustomerDTO customerdto) {
+    public ResponseEntity<CustomerRegister> updatecutomer(@PathVariable Integer id, @ModelAttribute CustomerDTO customerdto) {
 
-        String mess = customerservice.updatecustomer(id, customerdto);
+        CustomerRegister mess = customerservice.updatecustomer(id, customerdto);
 
         if (mess == null) {
             return ResponseEntity.notFound().build();

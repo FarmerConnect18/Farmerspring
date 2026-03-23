@@ -6,7 +6,6 @@ package com.Farmer.Farmer_ConnectSP.Repository;
 
 import com.Farmer.Farmer_ConnectSP.Entities.Junction;
 import java.util.List;
-import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

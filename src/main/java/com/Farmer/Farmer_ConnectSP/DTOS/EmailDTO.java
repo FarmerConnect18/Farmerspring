@@ -17,6 +17,7 @@ public class EmailDTO {
     private String subject;
     private String message;
     private String password;
+    private String username;
     private Integer id;
 
     public String getTo() {
@@ -83,8 +84,12 @@ public class EmailDTO {
         this.id = id;
     }
 
- 
-    
+    public String getUsername() {
+        return username;
+    }
 
-    
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
 }

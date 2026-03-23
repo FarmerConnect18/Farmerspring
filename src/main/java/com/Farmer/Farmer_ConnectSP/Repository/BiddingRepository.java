@@ -5,7 +5,6 @@
 package com.Farmer.Farmer_ConnectSP.Repository;
 
 import com.Farmer.Farmer_ConnectSP.Entities.Bidding;
-import com.Farmer.Farmer_ConnectSP.Entities.Product;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 

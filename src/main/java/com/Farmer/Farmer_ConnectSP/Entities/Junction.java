@@ -75,6 +75,9 @@ public class Junction implements Serializable {
     @JoinColumn(name = "farmer_id", referencedColumnName = "fid")
     @ManyToOne
     @JsonBackReference
+    @JsonIgnore
+//    @JsonBackReference
+
     private FarmerRegister farmerId;
     @OneToMany(mappedBy = "junctionId")
     private List<JunctionRequest> junctionRequestList;

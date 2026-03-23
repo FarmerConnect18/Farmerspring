@@ -10,7 +10,6 @@ import com.Farmer.Farmer_ConnectSP.Entities.FarmerRegister;
 import com.Farmer.Farmer_ConnectSP.Repository.CustomerRepository;
 import com.Farmer.Farmer_ConnectSP.Repository.FarmerRepository;
 import java.util.Random;
-import org.apache.logging.log4j.message.SimpleMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -72,7 +71,7 @@ public class ForgotPassword {
             if (customobj == null) {
                 return null;
             }
-            customobj.setPassword(emaildto.getPassword());
+            customobj.setPassword(secutityobj.encode(emaildto.getPassword()));
             customerrepo.save(customobj);
             
             return emaildto;

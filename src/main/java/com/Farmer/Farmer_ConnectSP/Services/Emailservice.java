@@ -4,8 +4,6 @@
  */
 package com.Farmer.Farmer_ConnectSP.Services;
 
-import com.Farmer.Farmer_ConnectSP.Controller.FarmerDTO;
-import com.Farmer.Farmer_ConnectSP.DTOS.CustomerDTO;
 import com.Farmer.Farmer_ConnectSP.Entities.CustomerRegister;
 import com.Farmer.Farmer_ConnectSP.Entities.FarmerRegister;
 import com.Farmer.Farmer_ConnectSP.Repository.CustomerRepository;
@@ -15,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ModelAttribute;
 
 /**
  *

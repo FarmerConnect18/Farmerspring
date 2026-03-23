@@ -8,8 +8,6 @@ import com.Farmer.Farmer_ConnectSP.DTOS.EmailDTO;
 import com.Farmer.Farmer_ConnectSP.Services.ForgotPassword;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
