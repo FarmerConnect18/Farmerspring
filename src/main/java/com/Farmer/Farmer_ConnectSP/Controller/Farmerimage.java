@@ -104,7 +104,8 @@ public class Farmerimage {
             imagedata = cloudservice.uploadimage(farmerdto.getFarmerAdharback(), folderName);
             farmerobj.setFarmerAdharback(imagedata.get("url").toString());
 
-            return "inserted successfully";
+            farmerrepository.save(farmerobj);
+            return farmerobj;
         } catch (Exception e) {
 
             return null;
