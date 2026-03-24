@@ -52,15 +52,14 @@ public class FarmerController {
      * @return
      */
     @PostMapping("/farmer-register")
-    public ResponseEntity<?> farmerdata(@ModelAttribute FarmerDTO obj) {
-        try {
-            String s = farmerservice.inseruserdata(obj);
-            return ResponseEntity.ok().body(obj);
-        } catch (Exception e) {
-
-            return ResponseEntity.status(500).body(e.getMessage());
+    public ResponseEntity<FarmerRegister> farmerdata(@ModelAttribute FarmerDTO obj) {
+        
+            FarmerRegister farmerobj = farmerservice.inseruserdata(obj);
+        if(farmerobj==null)
+        {
+            return ResponseEntity.noContent().build();
         }
-
+            return ResponseEntity.ok().body(farmerobj);
     }
 
     /**
