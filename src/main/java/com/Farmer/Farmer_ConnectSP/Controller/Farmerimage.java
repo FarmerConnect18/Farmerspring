@@ -41,7 +41,7 @@ public class Farmerimage {
      * @param farmerdto
      * @return
      */
-    public String inseruserdata(FarmerDTO farmerdto) {
+    public FarmerRegister inseruserdata(FarmerDTO farmerdto) {
         try {
 //            File folder = new File(folderpath);
 //            if (!folder.exists()) {
@@ -104,7 +104,8 @@ public class Farmerimage {
             imagedata = cloudservice.uploadimage(farmerdto.getFarmerAdharback(), folderName);
             farmerobj.setFarmerAdharback(imagedata.get("url").toString());
 
-            return "inserted successfully";
+            farmerrepository.save(farmerobj);
+            return farmerobj;
         } catch (Exception e) {
 
             return null;
