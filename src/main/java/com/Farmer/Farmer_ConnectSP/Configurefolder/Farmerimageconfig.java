@@ -21,7 +21,7 @@ public class Farmerimageconfig implements WebMvcConfigurer {
 
 //    @Override
 //    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-////        WebMvcConfigurer.super.addResourceHandlers(registry); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+    ////        WebMvcConfigurer.super.addResourceHandlers(registry); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
 //        registry.addResourceHandler("/Farmer-photo/**")
 //                .addResourceLocations("file:E:/Project/projectimages/Farmer-photo/");
 //
@@ -41,9 +41,8 @@ public class Farmerimageconfig implements WebMvcConfigurer {
         WebMvcConfigurer.super.addCorsMappings(registry); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
 
         registry.addMapping("/**")
-                                .allowedOrigins("https://farmerconnectprl.netlify.app/")
-
-//                .allowedOrigins("http://localhost:4200/")
+                .allowedOrigins("https://farmerconnectpr.netlify.app/")
+                //                .allowedOrigins("http://localhost:4200/")
                 .allowedMethods("*")
                 .allowedHeaders("*")
                 .allowCredentials(true);
