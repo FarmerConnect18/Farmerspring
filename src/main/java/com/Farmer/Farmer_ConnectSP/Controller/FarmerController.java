@@ -53,13 +53,14 @@ public class FarmerController {
      */
     @PostMapping("/farmer-register")
     public ResponseEntity<FarmerRegister> farmerdata(@ModelAttribute FarmerDTO obj) {
-        
-            FarmerRegister farmerobj = farmerservice.inseruserdata(obj);
-        if(farmerobj==null)
-        {
-            return ResponseEntity.noContent().build();
-        }
-            return ResponseEntity.ok().body(farmerobj);
+ 
+      FarmerRegister farmerobj = farmerservice.inseruserdata(obj);
+     if(farmerobj==null)
+     {
+         return ResponseEntity.noContent().build();
+     }
+        return ResponseEntity.ok(farmerobj);
+
     }
 
     /**

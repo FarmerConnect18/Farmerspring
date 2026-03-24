@@ -41,7 +41,7 @@ public class Farmerimage {
      * @param farmerdto
      * @return
      */
-    public String inseruserdata(FarmerDTO farmerdto) {
+    public FarmerRegister inseruserdata(FarmerDTO farmerdto) {
         try {
 //            File folder = new File(folderpath);
 //            if (!folder.exists()) {
