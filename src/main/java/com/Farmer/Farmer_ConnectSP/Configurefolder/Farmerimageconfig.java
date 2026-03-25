@@ -41,7 +41,7 @@ public class Farmerimageconfig implements WebMvcConfigurer {
         WebMvcConfigurer.super.addCorsMappings(registry); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
 
         registry.addMapping("/**")
-                .allowedOrigins("https://farmerconnectpr.netlify.app")                
+                .allowedOrigins("https://*.netlify.app")                
                 .allowedMethods("*")
                 .allowedHeaders("*")
                 .allowCredentials(true);
