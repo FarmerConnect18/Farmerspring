@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author preml
  */
 @RestController
+
 public class FarmerController {
 
     @Autowired
@@ -34,7 +35,7 @@ public class FarmerController {
      * @param farmerdto
      * @return
      */
-    @PostMapping("/farmer-login/")
+    @PostMapping("/farmer-login")
     public ResponseEntity<FarmerDTO> farmerlogin(@ModelAttribute FarmerDTO farmerdto) {
         FarmerDTO farmerobj = farmerservice.findfarmer(farmerdto.getUsername(), farmerdto.getPassword());
 
