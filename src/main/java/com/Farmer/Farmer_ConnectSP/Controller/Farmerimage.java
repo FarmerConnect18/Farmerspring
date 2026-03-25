@@ -178,7 +178,6 @@ public class Farmerimage {
         farmerobj.setCity(farmerdto.getCity());
         farmerobj.setDatetime(farmerdto.getDatetime());
         farmerobj.setEmail(farmerdto.getEmail());
-        farmerobj.setPassword(farmerdto.getPassword());
         farmerobj.setStatus(1);
         farmerobj.setState(farmerdto.getState());
         farmerobj.setUsername(farmerdto.getUsername());
@@ -201,7 +200,6 @@ public class Farmerimage {
 //        }
 //       farmerobj.setFarmerAdhar(serverurl+"/Farmer-photo/"+farmerdto.getFarmerAdhar());
 //       farmerobj.setFarmerAdharback(serverurl+"/Farmer-photo/"+farmerdto.getFarmerAdharback());
-        System.out.println(farmerdto.getFarmerImg());
         Map imagedata = cloudservice.uploadimage(farmerdto.getFarmerImg(), folderName);
         farmerobj.setFarmerImg(imagedata.get("url").toString());
 

@@ -23,8 +23,6 @@ import org.springframework.web.bind.annotation.RestController;
  * @author preml
  */
 @RestController
-//@CrossOrigin("*")
-@Controller
 public class FarmerController {
 
     @Autowired
